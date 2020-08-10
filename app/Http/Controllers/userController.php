@@ -43,19 +43,28 @@ class userController extends Controller
         $password=$request->password;
         switch($type){
             case "responsable":
-                // $res = DB::select("select * from responsable_comptes where login=? and password=?",[$login,$password]);
-                // if(!empty($res)){
-                //     //set the first session 
-                //     $mat = $res->matricule;
-                //     //session(['matricule'=>$mat]);
-                //     return $res;
-                // }else{
-                //     return redirect("/");
-                // }
+                $res = DB::select("select * from responsable_comptes where login=? and password=?",[$login,$password]);
+                
+                if(!empty($res)){
+                    foreach ($res as $r) {
+                        $mat= $r->matricule;
+                        $idEmp= $r->id_employe;
+                     }
+
+                    //set the first session 
+                    session(['matricule'=>$mat]);
+                    $employe = DB::select("select * from employes where id_employe=? ",[$idEmp]);
+                    foreach($employe as $emp){
+                        $Nom_respo = $emp->nom."".$emp->prenom;
+                    }
+                    return $Nom_respo;
+                    //return session('matricule');
+                }else{
+                    return redirect("/");
+                }
                 
             break;
         }
-        //return $type."<br/> -- login : ".$login."<br/> -- password : ".$password;
     }
 
     /**
