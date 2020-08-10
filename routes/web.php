@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'pageController@getLogin');
+
+Route::get('/admin/cni','pageController@getPageCni');
+
+Route::post("/user", "userController@store");
