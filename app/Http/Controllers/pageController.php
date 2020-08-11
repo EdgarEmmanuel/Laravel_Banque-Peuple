@@ -44,4 +44,10 @@ class pageController extends Controller
 
 
 
+    public function getPagInsertCompte(){
+        return view('compte.compte');
+    }
+
+
+
 }

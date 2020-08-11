@@ -54,7 +54,7 @@ class clients_controller extends Controller
         ]);
         
         if($res!=0){
-            return redirect("/admin/cni")->with('success',"INSERTION REUSSIE");
+            return redirect("/admin/cni")->with('success',"INSERTION CLIENT SALARIE REUSSIE");
         }else{
             return redirect("/admin/cni")->with('error',"INSERTION IMPOSSIBLE");
         }
@@ -98,7 +98,42 @@ class clients_controller extends Controller
 
 
 
+    public function insertClientMoral(Request $request ){
+        $this->validate($request,[
+            'nom' => 'required',
+            'email' => 'required',
+            'matricule' => 'required',
+            'adresse' => 'required',
+            'telephone' => 'required',
+            'type' => 'required',
+            'ninea' => 'required',
+            'activite' => 'required'
+        ]);
 
+         //firstly insert in the table clients
+         $idClient = clients_controller::insertInClients($request->email,$request->telephone,$request->matricule);
+
+         //secondly insert in the client_moral table
+
+         $resultat = DB::table('client_moral')->insert([
+            "type_entreprise" => $request->type,
+            "activite_entreprise" => $request->activite,
+            "ninea" => $request->ninea,
+            "nom_entreprise" => $request->nom,
+            "idClient" => $idClient
+         ]);
+
+            //redirection after  verify 
+         if($resultat!=0){
+            return redirect("/admin/cni")->with('success',"INSERTION CLIENT MORAL REUSSIE ");
+        }else{
+            return redirect("/admin/cni")->with('error',"INSERTION IMPOSSIBLE");
+        }
+
+
+
+
+    }
 
 
 
