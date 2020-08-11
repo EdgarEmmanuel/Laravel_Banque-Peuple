@@ -1,12 +1,12 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{URL::asset('css/clientSalarie_css.css')}}">
+    <link rel="stylesheet" href="{{ URL::asset('css/clientSalarie_css.css') }}">
 @endsection
 
     <header>
         <div class="brand"> 
-            <h1>BANQUE DU PEUPLE <a href="index.php?code=cni">ACCUEIL</a> </h1>
+            <h1>BANQUE DU PEUPLE <a href="/admin/cni">ACCUEIL</a> </h1>
         </div>
     </header>
 
@@ -22,7 +22,7 @@
                         <input type="text" name="adresseforCl" placeholder="Adresse Entreprise" id="addr_salarie" autocomplete="off" required />
                         <input type="text" name="telephone" placeholder="telephone" id="tele_salarie" autocomplete="off" required/><br/>
                         <input type="text" name="email" placeholder="email" id="email_salarie" autocomplete="off" required/>
-                        <input type="text" name="matricule" placeholder="mat_client" id="mat_client" autocomplete="off" value="<?=$value?>" required readonly/><br/>
+                        <input type="text" name="matricule" placeholder="mat_client" id="mat_client" autocomplete="off" value="{{$value}}" required readonly/><br/>
                         <input type="text" name="profession" placeholder="profession" id="emploi_salarie" autocomplete="off" required/>
                         <input type="text" name="nom_Entreprise" placeholder="nom entreprise" id="NameEnter_salarie" autocomplete="off" required/><br/>
                         <input type="text" name="cni" placeholder="CNI" id="cni_salarie" autocomplete="off" required/>

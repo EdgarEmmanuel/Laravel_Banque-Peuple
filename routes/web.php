@@ -13,8 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// get request 
+
 Route::get('/', 'pageController@getLogin');
 
 Route::get('/admin/cni','pageController@getPageCni');
 
-Route::post("/user", "userController@store");
+Route::get('/client/clientSalarie','pageController@getPageInsertClientSalarie');
+
+Route::get('/client/clientMoral','pageController@getPageInsertClientMoral');
+
+Route::get('/client/clientIndependant','pageController@getPageInsertClientIndependant');
+
+
+// post request
+
+Route::post("/verify_user", "userController@store");

@@ -68,8 +68,10 @@ class userController extends Controller
                     foreach($agence as $ag){
                         $nomAgence = $ag->agence;
                     }
-                    return $nomAgence;
-                    //return session('matricule');
+                    session(["nameAgence"=>$nomAgence]);
+
+                    
+                    return redirect("/admin/cni");
                 }else{
                     return redirect("/");
                 }
