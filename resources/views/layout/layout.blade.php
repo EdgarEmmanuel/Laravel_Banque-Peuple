@@ -10,7 +10,7 @@
     <!-- link for stylesheet -->
     @yield('css')
 </head>
-<body>
+<body> 
 
     @include("layout.message")
 

@@ -13,7 +13,8 @@
      <input type="text" value="Matricule : {{ session('matricule')}} " placeholder="" id="caissiere" readonly/>
         <a href="/logout" id="a" >Deconnexion</a><br>
         <input type="text" value="Nom Complet : {{ session('nomRespo') }} " placeholder="" id="nom" readonly/><br>
-        <form action="index.php" method="post" id="formGest">
+        <form action="/checkCni" method="post" id="formGest">
+            @csrf
             <label id="label"  for="">ANCIEN CLIENT</label><br/>
             <input type="text" placeholder="MATRICULE CLIENT" name="matricule" id="cni" autocomplete="off" required /> <br>
             <button id="verClient" name="btn" value="verify">Verifier</button>

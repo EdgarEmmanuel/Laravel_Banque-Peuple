@@ -8,6 +8,7 @@
 
 @section('content')
 <form action="index.php" method="post">
+    @csrf
     <!-- form for adding moral client $_SESSION["idClient"] -->
 
     <div class="Moral">
@@ -41,7 +42,7 @@
        <!-- pour la session avec la date , voir la page index.php(Ligne 16-18) -->
        <br/>
        <label for="" style="color:white;">DATE OUVERTURE COMPTE</label>
-       <input type="date" value="<?= $_SESSION['date'];?>" name="dateOuvert" min="<?= $_SESSION['date'];?>" placeholder="date ouverture" id="date_m" /> 
+       <input type="date" value="{{ $date }}" name="dateOuvert" min="{{ $date }}" placeholder="date ouverture" id="date_m" /> 
        <div id="choix">
            <label for="" style="color:white;">FRAIS OUVERTURE</label><input  type="checkbox" name="souscription" value="souscri" id="frais"/>
        </div>

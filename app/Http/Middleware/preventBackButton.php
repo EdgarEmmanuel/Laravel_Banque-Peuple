@@ -16,6 +16,6 @@ class preventBackButton
     public function handle($request, Closure $next)
     {
         $response = $next($request); 
-        return $response->header('Cache-Control','no-cache, no-store, max-age=0, must-revalidate');
+        return $response->header('Cache-Control','no-cache, no-store, must-revalidate');
     }
 }

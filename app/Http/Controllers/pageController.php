@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class pageController extends Controller
 {
 
-
+ 
     public function getLogin(){
         return view('login');
     }
@@ -45,7 +45,8 @@ class pageController extends Controller
 
 
     public function getPagInsertCompte(){
-        return view('compte.compte');
+        $date = \Date("Y-m-d");
+        return view('compte.compte')->with("date",$date);
     }
 
 

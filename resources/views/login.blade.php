@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{URL::asset('css/login.css')}}"/> 
 @endsection
 
-@section('content')
+@section('content') 
     <header>
         <div class="brand">Sign In</div>
     </header>

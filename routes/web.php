@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Middleware\preventBackButton;
+use App\Http\Middleware\preventBackButton; 
 
 // get request 
 Route::get('/', 'pageController@getLogin');
@@ -26,6 +26,8 @@ Route::get('/client/clientMoral','pageController@getPageInsertClientMoral');
 
 Route::get('/client/clientIndependant','pageController@getPageInsertClientIndependant');
 
+
+
 //the route vers page insert compte
 Route::get('/compte','pageController@getPagInsertCompte');
 
@@ -34,7 +36,6 @@ Route::get('/logout','userController@logOutRespo')->middleware(preventBackButton
 
 
 // post request
-
 Route::post("/verify_user", "userController@store");
 
 //for insert client salarie
@@ -45,3 +46,5 @@ Route::post('/insert/independant','clients_controller@InsertClientIndependant');
 
 //insert client Moral
 Route::post('/insert/clientMoral','clients_controller@insertClientMoral');
+
+Route::post('/checkCni','userController@checkCNI');

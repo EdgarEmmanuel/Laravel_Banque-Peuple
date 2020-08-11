@@ -8,22 +8,76 @@ use Illuminate\Support\Facades\DB;
 
 class userController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public static function retrieveClientSalarie($mat)
     {
-        //
+        $res = DB::select("select * from clients where matricule='?' ",[$mat]);
+        if(!empty($res)){
+            var_dump($res);
+        }else{
+            return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
+        }
     }
 
+    public static function retrieveClientIndependant($mat){
+        $res = DB::select("select * from clients where matricule='?' ",[$mat]);
+        if(!empty($res)){
+            var_dump($res);
+        }else{
+            return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
+        }
+    }
+
+    public static function retrieveClientMoral($mat){
+        $res = DB::select("select * from clients where matricule='?' ",[$mat]);
+        if(!empty($res)){
+            var_dump($res);
+        }else{
+            return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
+        }
+    }
+
+    public function checkCNI(Request $request){
+        //validate the field 
+        $this->validate($request,[
+            'matricule' => 'required'
+        ]);
+
+        //verify and submit if it is possible
+        if(strlen($request->matricule)>=3){
+            
+            //fetch the data
+            $matricule = $request->matricule;
+
+            //concatenation des 3 premiers caracteres
+            $DebutMat = $matricule[0].$matricule[1].$matricule[2];
+
+            switch($DebutMat){
+                case "BPS": 
+                    userController::retrieveClientSalarie($matricule);
+                break;
+
+                case "BCM":
+                    userController::retrieveClientIndependant($matricule);
+                break;
+
+                case "BCI":
+                    userController::retrieveClientMoral($matricule);
+                break;
+
+                default: 
+                    return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
+                break;
+            }
+        }else{
+            return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
+        }
+        //return $request;
+    }
+
+
     public function logOutRespo(Request $request){
+        //drop all the session
         session()->flush();
-        // session()->forget('matricule');
-        // session()->forget("nomRespo");
-        // session()->forget("idAgence");
-        // session()->forget("nameAgence");
 
         return redirect('/');
 
@@ -50,6 +104,7 @@ class userController extends Controller
         $type = $request->type;
         $login = $request->login;
         $password=$request->password;
+
         switch($type){
             case "responsable":
                 $res = DB::select("select * from responsable_comptes where login=? and password=?",[$login,$password]);
