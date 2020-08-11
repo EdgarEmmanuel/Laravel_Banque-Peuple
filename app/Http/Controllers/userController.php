@@ -51,13 +51,24 @@ class userController extends Controller
                         $idEmp= $r->id_employe;
                      }
 
-                    //set the first session 
+                    //set the first session for the matricule 
                     session(['matricule'=>$mat]);
                     $employe = DB::select("select * from employes where id_employe=? ",[$idEmp]);
                     foreach($employe as $emp){
-                        $Nom_respo = $emp->nom."".$emp->prenom;
+                        $Nom_respo = $emp->nom." ".$emp->prenom;
+                        $idAgence = $emp->id_agence;
                     }
-                    return $Nom_respo;
+                    //the other sesion variable 
+                    session(["nomRespo"=>$Nom_respo]);
+                    session(["idAgence"=>$idAgence]);
+
+
+                    //for the agence 
+                    $agence = DB::select('select * from agences where id_agence=?',[$idAgence]);
+                    foreach($agence as $ag){
+                        $nomAgence = $ag->agence;
+                    }
+                    return $nomAgence;
                     //return session('matricule');
                 }else{
                     return redirect("/");

@@ -1,7 +1,7 @@
 @extends("layout.layout")
 
 @section('css')
-        <link rel="stylesheet" href="{{URL::asset('css/cnicss')}}">
+        <link rel="stylesheet" href="{{URL::asset('css/cni.css')}}">
 @endsection
 
     <header>
