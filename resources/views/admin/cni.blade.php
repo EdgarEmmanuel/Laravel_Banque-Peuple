@@ -11,7 +11,7 @@
     </header>
     <main>
      <input type="text" value="Matricule : {{ session('matricule')}} " placeholder="" id="caissiere" readonly/>
-        <a href="index.php?code=deconnex" id="a" >Deconnexion</a><br>
+        <a href="/logout" id="a" >Deconnexion</a><br>
         <input type="text" value="Nom Complet : {{ session('nomRespo') }} " placeholder="" id="nom" readonly/><br>
         <form action="index.php" method="post" id="formGest">
             <label id="label"  for="">ANCIEN CLIENT</label><br/>

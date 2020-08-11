@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 
-use App\responsableCompte;
-
 class userController extends Controller
 {
     /**
@@ -18,6 +16,17 @@ class userController extends Controller
     public function index()
     {
         //
+    }
+
+    public function logOutRespo(Request $request){
+        session()->flush();
+        // session()->forget('matricule');
+        // session()->forget("nomRespo");
+        // session()->forget("idAgence");
+        // session()->forget("nameAgence");
+
+        return redirect('/');
+
     }
 
     /**

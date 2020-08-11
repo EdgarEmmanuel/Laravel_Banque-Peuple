@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class pageController extends Controller
 {
+
+
     public function getLogin(){
         return view('login');
     }
@@ -19,7 +21,7 @@ class pageController extends Controller
     public function getPageInsertClientSalarie(){
         $value = DB::select("SELECT count(idClient) as num FROM clients where SUBSTR(matricule,1,3) = 'BPS'");
         foreach($value as $val){
-            $matriculeSalarie = (int)$val->num + 1;
+            $matriculeSalarie = 'BPS'.((int)$val->num + 1);
         }
         return view('clients.clientSalarie')->with("value",$matriculeSalarie);
     }
@@ -27,7 +29,7 @@ class pageController extends Controller
     public function getPageInsertClientMoral(){
         $value = DB::select("SELECT count(idClient) as num FROM clients where SUBSTR(matricule,1,3) = 'BCM'");
         foreach($value as $val){
-            $matriculeMoral = (int)$val->num + 1;
+            $matriculeMoral = 'BCM'.((int)$val->num + 1);
         }
         return view("clients.clientMoral")->with("matriculeMoral",$matriculeMoral);
     }
@@ -35,7 +37,7 @@ class pageController extends Controller
     public function getPageInsertClientIndependant(){
         $value = DB::select("SELECT count(idClient) as num FROM clients where SUBSTR(matricule,1,3) = 'BCI'");
         foreach($value as $val){
-            $matriculeNoSalarie = (int)$val->num + 1;
+            $matriculeNoSalarie = 'BCI'.((int)$val->num + 1);
         }
         return view("clients.clientIndependant")->with("matriculeNoSalarie",$matriculeNoSalarie);
     }
