@@ -45,8 +45,18 @@ class pageController extends Controller
 
 
     public function getPagInsertCompte(){
+        //set the default deblocage date
+        $min = \Date("Y-m-d",strtotime('+1 year'));
+
+        //set the default date 
         $date = \Date("Y-m-d");
-        return view('compte.compte')->with("date",$date);
+
+        //set the all data in on variable
+        $dataFirst=[
+            "min"=>$min,
+            "date" =>$date
+        ];
+        return view('compte.compte')->with("first",$dataFirst);
     }
 
 

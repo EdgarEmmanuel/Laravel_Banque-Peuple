@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\preventBackButton; 
 
-// get request 
+// ============= All get request ===================
 Route::get('/', 'pageController@getLogin');
 
 Route::get('/admin/cni','pageController@getPageCni');
@@ -26,13 +26,13 @@ Route::get('/client/clientMoral','pageController@getPageInsertClientMoral');
 
 Route::get('/client/clientIndependant','pageController@getPageInsertClientIndependant');
 
-
-
 //the route vers page insert compte
 Route::get('/compte','pageController@getPagInsertCompte');
 
 //deconnexion for the responsable compte
 Route::get('/logout','userController@logOutRespo')->middleware(preventBackButton::class);
+
+
 
 
 // post request

@@ -10,16 +10,36 @@ class userController extends Controller
 {
     public static function retrieveClientSalarie($mat)
     {
-        $res = DB::select("select * from clients where matricule='?' ",[$mat]);
-        if(!empty($res)){
-            var_dump($res);
+        $client = DB::select("select * from clients where matricule=? ",[$mat]);
+        // var_dump($client);
+        // die();
+        if(!empty($client)){
+
+            //we retrieve the idClient of the client 
+            foreach($client as $r){
+                $idClient = $r->idClient;
+            }
+
+            //secondly we retrieve from the specific table
+            $clientS = DB::select("select * from client_salarie where idClient=?",[$idClient]);
+            foreach($clientS as $cl){
+                $nomComplet = $cl->nom." ".$cl->prenom;
+            }
+
+            $data=[
+                "idClient" => $idClient,
+                "nomComplet" => $nomComplet
+            ];
+            //var_dump($data);
+
+            return redirect('/compte')->with("data",$nomComplet);
         }else{
-            return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
+            return view('admin.cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
         }
     }
 
     public static function retrieveClientIndependant($mat){
-        $res = DB::select("select * from clients where matricule='?' ",[$mat]);
+        $res = DB::select("select * from clients where matricule=? ",[$mat]);
         if(!empty($res)){
             var_dump($res);
         }else{
@@ -28,7 +48,7 @@ class userController extends Controller
     }
 
     public static function retrieveClientMoral($mat){
-        $res = DB::select("select * from clients where matricule='?' ",[$mat]);
+        $res = DB::select("select * from clients where matricule=? ",[$mat]);
         if(!empty($res)){
             var_dump($res);
         }else{
@@ -71,7 +91,6 @@ class userController extends Controller
         }else{
             return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
         }
-        //return $request;
     }
 
 
@@ -80,17 +99,6 @@ class userController extends Controller
         session()->flush();
 
         return redirect('/');
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
