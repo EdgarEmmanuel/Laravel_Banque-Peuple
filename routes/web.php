@@ -18,6 +18,8 @@ use App\Http\Middleware\preventBackButton;
 // ============= All get request ===================
 Route::get('/', 'pageController@getLogin');
 
+Route::middleware('cache.headers:public,no-cache,no-store,must-revalidate')->group(function () {
+
 Route::get('/admin/cni','pageController@getPageCni');
 
 Route::get('/client/clientSalarie','pageController@getPageInsertClientSalarie');
@@ -27,11 +29,13 @@ Route::get('/client/clientMoral','pageController@getPageInsertClientMoral');
 Route::get('/client/clientIndependant','pageController@getPageInsertClientIndependant');
 
 //deconnexion for the responsable compte
-Route::get('/logout','userController@logOutRespo')->middleware(preventBackButton::class);
-
+Route::get('/logout','userController@logOutRespo');
 
 //the route vers page insert compte
 Route::get('/insert/compte','pageController@getPagInsertCompte');
+
+});
+
 
 
 
