@@ -8,53 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class userController extends Controller
 {
-    public static function retrieveClientSalarie($mat)
-    {
-        $client = DB::select("select * from clients where matricule=? ",[$mat]);
-        // var_dump($client);
-        // die();
-        if(!empty($client)){
-
-            //we retrieve the idClient of the client 
-            foreach($client as $r){
-                $idClient = $r->idClient;
-            }
-
-            //secondly we retrieve from the specific table
-            $clientS = DB::select("select * from client_salarie where idClient=?",[$idClient]);
-            foreach($clientS as $cl){
-                $nomComplet = $cl->nom." ".$cl->prenom;
-            }
-
-            $data=[
-                "idClient" => $idClient,
-                "nomComplet" => $nomComplet
-            ];
-            //var_dump($data);
-
-            return redirect('/compte')->with("data",$nomComplet);
-        }else{
-            return view('admin.cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
-        }
-    }
-
-    public static function retrieveClientIndependant($mat){
-        $res = DB::select("select * from clients where matricule=? ",[$mat]);
-        if(!empty($res)){
-            var_dump($res);
-        }else{
-            return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
-        }
-    }
-
-    public static function retrieveClientMoral($mat){
-        $res = DB::select("select * from clients where matricule=? ",[$mat]);
-        if(!empty($res)){
-            var_dump($res);
-        }else{
-            return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
-        }
-    }
 
     public function checkCNI(Request $request){
         //validate the field 
@@ -62,7 +15,7 @@ class userController extends Controller
             'matricule' => 'required'
         ]);
 
-        //verify and submit if it is possible
+        //verify the length and submit if it is possible
         if(strlen($request->matricule)>=3){
             
             //fetch the data
@@ -72,16 +25,86 @@ class userController extends Controller
             $DebutMat = $matricule[0].$matricule[1].$matricule[2];
 
             switch($DebutMat){
+                //when the matricule start with 'BPS'
                 case "BPS": 
-                    userController::retrieveClientSalarie($matricule);
+                    $client = DB::select("select * from clients where matricule=? ",[$matricule]);
+                    if(!empty($client)){
+            
+                        //we retrieve the idClient of the client 
+                        foreach($client as $r){
+                            $idClient = $r->idClient;
+                        }
+            
+                        //secondly we retrieve from the specific table
+                        $clientS = DB::select("select * from client_salarie where idClient=?",[$idClient]);
+                        foreach($clientS as $cl){
+                            $nomComplet = $cl->nom." ".$cl->prenom;
+                        }
+
+                        //set the session
+                        session(["idClient" => $idClient]);
+                        session(["nomCompletClient" => $nomComplet]);
+            
+                        return redirect('/insert/compte');
+                    }else{
+                        return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
+                    }
                 break;
 
+                //when the matricule start like 'BCM'
                 case "BCM":
-                    userController::retrieveClientIndependant($matricule);
+                    $client = DB::select("select * from clients where matricule=? ",[$matricule]);
+                    if(!empty($client)){
+            
+                        //we retrieve the idClient of the client 
+                        foreach($client as $r){
+                            $idClient = $r->idClient;
+                        }
+            
+                        //secondly we retrieve from the specific table
+                        $clientS = DB::select("select * from client_moral where idClient=?",[$idClient]);
+                        
+                        foreach($clientS as $cl){
+                            $nomComplet = $cl->nom_entreprise;
+                        }
+
+                        //set the session
+                        session(["idClient" => $idClient]);
+                        session(["nomCompletClient" => $nomComplet]);
+            
+            
+                        return redirect('/insert/compte');
+                    }else{
+                        return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
+                    }
                 break;
 
+                //when the matricule strat like 'BCI'
                 case "BCI":
-                    userController::retrieveClientMoral($matricule);
+                    $client = DB::select("select * from clients where matricule=? ",[$matricule]);
+                    if(!empty($client)){
+            
+                        //we retrieve the idClient of the client 
+                        foreach($client as $r){
+                            $idClient = $r->idClient;
+                        }
+            
+                        //secondly we retrieve from the specific table
+                        $clientS = DB::select("select * from client_independant where idClient=?",[$idClient]);
+                        
+                        foreach($clientS as $cl){
+                            $nomComplet = $cl->nom." ".$cl->prenom;
+                        }
+
+                        //set the session
+                        session(["idClient" => $idClient]);
+                        session(["nomCompletClient" => $nomComplet]);
+            
+            
+                        return redirect('/insert/compte');
+                    }else{
+                        return redirect('/admin/cni')->with('error',"LE MATRICULE EST INEXISTANT !!!");
+                    }
                 break;
 
                 default: 
@@ -125,6 +148,10 @@ class userController extends Controller
 
                     //set the first session for the matricule 
                     session(['matricule'=>$mat]);
+
+                    //session for the idEmploye
+                    session(["id_respo" => $idEmp]);
+                    
                     $employe = DB::select("select * from employes where id_employe=? ",[$idEmp]);
                     foreach($employe as $emp){
                         $Nom_respo = $emp->nom." ".$emp->prenom;

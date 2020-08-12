@@ -23,6 +23,7 @@ main   form .salarie {
 
 main   form select {
     width:400px;
+    height:2rem;
 }
 
 main   form{
@@ -45,17 +46,31 @@ main   form button:hover{
     background:#235d8e;
     color:white;
 }
-/* 
-main   form .button_for_s{
-    margin-left: 450px;
-    margin-top: 20px;
-} */
+
 
 main   form .salarie input{
     width:620px;
     height:2rem;
     margin: 3px 0px;
     font-style: bold;
+}
+
+
+main form input{
+    width:720px;
+    height:4rem;
+    margin: 8px 0px;
+    font-style: bold;
+    border-radius: 10px;
+}
+
+main form input::placeholder{
+    font-family:'Balsamiq Sans', cursive
+}
+
+main form label{
+    font-weight:bold;
+    font-family:'Balsamiq Sans', cursive
 }
 
 main   form input[type="checkbox"]{

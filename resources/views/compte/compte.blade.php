@@ -13,16 +13,17 @@
     </div>
 </header>
 <main>
-    <form action="index.php" method="post">
+    <form action="/compte" method="post">
+        @csrf
          <!-- form for adding moral client $_SESSION["idClient"] -->
 
          <div class="Moral">
             <h2>INFORMATIONS COMPTE DU CLIENT </h2>
             <input type="text" name="" placeholder="nom complet"
-             value="" id="prenom" readonly/>
+         value="{{ session("nomCompletClient") }}" id="prenom" readonly/>
 
             <input type="text" name="" placeholder="cni" 
-             value="" id="idClient" readonly/>
+             value=" {{ session("idClient") }} " id="idClient" readonly/>
         </div>
 
         <label for="" style="color:white;">TYPE COMPTE </label>
@@ -31,14 +32,13 @@
                 <option value="Epargne">Compte Epargne</option>
                 <option value="Courant">Compte Courant</option>
                 <option value="Bloque">Compte Bloque</option>
-            </select><br/>
+            </select><br/> 
             <input type="text" name="raison" id="raison_social" placeholder="raison social"/>
-            <input type="number" name="cle-rib" id="cle_rib" min="1" max="97" placeholder="Cle RIB"/><br/>
-            <!-- <input type="number" name="taux_agios" id="taux_agios" placeholder="taux agios" />  -->
+            <input type="number" name="cle_rib" id="cle_rib" min="1" max="97" placeholder="Cle RIB"/><br/>
             <input type="number" name="montant" id="montant" min="10000" placeholder="montant" /> 
-            <input type="text" name="Nameentreprise" id="nom_Entreprise" placeholder="nom Entreprise" /><br/>
-            <input type="text" name="adrEntreprise" id="Adresse_Entreprise" placeholder="Adresse Entreprise" />
-            <input type="text" name="numAgence" id="numeroAgence"  placeholder="numeroAgence" value="" readonly/><br/>
+            <input type="text" name="Name_entreprise" id="nom_Entreprise" placeholder="nom Entreprise" /><br/>
+            <input type="text" name="adresse_Entreprise" id="Adresse_Entreprise" placeholder="Adresse Entreprise" />
+            <input type="text" name="numero_Agence" id="numeroAgence"  placeholder="numero Agence" value=" {{session("nameAgence")}} " readonly/><br/>
 
             
             <label for="" style="color:white;">DATE DEBLOCAGE COMPTE </label>

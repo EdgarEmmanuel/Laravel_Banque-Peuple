@@ -26,11 +26,12 @@ Route::get('/client/clientMoral','pageController@getPageInsertClientMoral');
 
 Route::get('/client/clientIndependant','pageController@getPageInsertClientIndependant');
 
-//the route vers page insert compte
-Route::get('/compte','pageController@getPagInsertCompte');
-
 //deconnexion for the responsable compte
 Route::get('/logout','userController@logOutRespo')->middleware(preventBackButton::class);
+
+
+//the route vers page insert compte
+Route::get('/insert/compte','pageController@getPagInsertCompte');
 
 
 
@@ -48,3 +49,7 @@ Route::post('/insert/independant','clients_controller@InsertClientIndependant');
 Route::post('/insert/clientMoral','clients_controller@insertClientMoral');
 
 Route::post('/checkCni','userController@checkCNI');
+
+
+//route for the post from the insertCompte page 
+Route::post('/compte','compte_controller@insertCompte');

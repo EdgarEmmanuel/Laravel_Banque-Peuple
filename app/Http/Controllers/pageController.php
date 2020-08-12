@@ -42,8 +42,6 @@ class pageController extends Controller
         return view("clients.clientIndependant")->with("matriculeNoSalarie",$matriculeNoSalarie);
     }
 
-
-
     public function getPagInsertCompte(){
         //set the default deblocage date
         $min = \Date("Y-m-d",strtotime('+1 year'));
