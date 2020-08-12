@@ -83,10 +83,10 @@ UI_GestClient.getAllButons();
 //})
 
 //remove the div when she appears
-var div = document.querySelector(".desMess");
-setTimeout(()=>{
-    document.querySelector("main").removeChild(div);
-},4000)   
+// var div = document.querySelector(".desMess");
+// setTimeout(()=>{
+//     document.querySelector("main").removeChild(div);
+// },4000)   
 
 
 

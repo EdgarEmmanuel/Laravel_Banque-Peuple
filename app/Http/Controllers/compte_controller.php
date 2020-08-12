@@ -90,6 +90,87 @@ class compte_controller extends Controller
                         return redirect('/admin/cni')->with('error',"ERREUR D'INSERTION DE COMPTE");
                     }
             break;
+
+            //when the type of the account is 'Courant'
+            case "Courant": 
+                $this->validate($request,[
+                    'raison' => 'required',
+                    'cle_rib' => 'required',
+                    'montant' => 'required',
+                    'Name_entreprise' => 'required',
+                    'adresse_Entreprise' => 'required',
+                    'dateOuvert' => 'required',
+                    'agiosOBG' => 'required'
+                ]);
+
+                //fetch the number of compte_courant ath this moment 
+                $numero_courant = self::getNumCompte("Courant");
+
+                //retrieve the value of the agios
+                $agios = DB::select(" select montant , id_agios from agios where description='entretien' ");
+                foreach($agios as $ag){
+                    $sal = $ag->montant;
+                    $id_agios = $ag->id_agios;
+                }
+
+                //calculate the amount of money after the agios
+                $final = (int)$request->montant - (int)$sal;
+
+
+                //insert in  compte firstly
+                $idCompte=self::insertInCompte($numero_courant,$request->cle_rib,$request->dateOuvert,$idClient,$idRespo,$idAgence);
+
+                
+                //secondly insert in the table compte_courant
+                $resultat = DB::table('compte_courant')->insert([
+                    'adresse_employeur' => $request->adresse_Entreprise,
+                    'nom_entreprise' => $request->Name_entreprise,
+                    'raison_sociale' => $request->raison,
+                    'solde' => $final ,
+                    'id_agios' => $id_agios,
+                    'id_compte' => $idCompte
+                ]);
+
+
+                //redirection after insertion
+                if($resultat!=0){
+                    return redirect('/admin/cni')->with('success','INSERTION DU COMPTE EFFECTUE AVEC SUCCESS !! ');
+                }else{
+                    return redirect('/admin/cni')->with('error',"ERREUR D'INSERTION DE COMPTE");
+                }
+
+            break;
+
+            case "Bloque" : 
+                //validate the fields required for create compte_bloque
+                $this->validate($request,[
+                    'cle_rib' => 'required',
+                    'numero_Agence' => 'required',
+                    'dateOuvert' => 'required',
+                    'montant' => 'required',
+                    'dateDebloc' => 'required'
+                ]);
+
+                //fetch the numero_compte for the account bloque 
+                $numero_bloque = self::getNumCompte("Bloque");
+
+                //insert firstly in compte 
+                $idCompte=self::insertInCompte($numero_bloque,$request->cle_rib,$request->dateOuvert,$idClient,$idRespo,$idAgence);
+
+                //insert in table compte_bloque 
+                $resultat = DB::table("compte_bloque")->insert([
+                    'date_deblocage' => $request->dateDebloc,
+                    'solde' => $request->montant,
+                    'id_compte' => $idCompte
+                ]);
+
+                //redirection after insertion
+                if($resultat!=0){
+                    return redirect('/admin/cni')->with('success','INSERTION DU COMPTE EFFECTUE AVEC SUCCESS !! ');
+                }else{
+                    return redirect('/admin/cni')->with('error',"ERREUR D'INSERTION DE COMPTE");
+                }
+            break;
         }
     }
 }
