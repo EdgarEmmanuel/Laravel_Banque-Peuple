@@ -12,9 +12,30 @@
         <a href="" id="sal">SALARIES</a>
     </nav>
 
-    @foreach($independants as $in)
-        {{ $in->nom }}
-    @endforeach
+    <div class="diI">
+        <table>
+            <th>
+                <td>NOM COMPLET </td>
+                <td>LOCALISATION</td>
+                <td> CNI </td>
+                <td>PROFESSION</td>
+                <td>ACTION</td>
+            </th>
+            @foreach($independants as $in)
+                <tr>
+                    <td>{{ $in->nom }} {{$in->prenom}} </td>
+                    <td>{{ $in->localisation }} </td>
+                    <td>{{ $in->cni }}</td>
+                    <td>{{ $in->activite_client }}</td>
+                    <td> 
+                        <a href="{{$in->idClient}}">VOIR COMPTE(S)</a>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+
+   
 @endsection
 
 

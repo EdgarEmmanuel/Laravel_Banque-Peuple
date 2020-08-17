@@ -15,3 +15,12 @@ nav a{
     text-decoration:none;
     cursor:pointer;
 }
+
+
+.diI table {
+    width:100%;
+}
+
+.diI table th{
+    background:black;
+}
