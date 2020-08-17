@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="{{URL::asset('css/cni.css')}}">
 @endsection
 
+
+@section('content')
     <header>
         <div class="brand">
             Banque du Peuple
@@ -24,6 +26,12 @@
     <a class="addS" href="/client/clientSalarie" id="add">Nouveau Client Salarie </a> <br/><br/><br/><br/>
     <a class="addM" href="/client/clientMoral" id="add">Nouveau Client Moral </a> <br/><br/><br/><br/>
     <a class="addI" href="/client/clientIndependant" id="add">Nouveau Client Independant </a>
+
+    <p class="display">
+        <a href="/display/clients">LISTE DES CLIENTS</a>
+    </p>
+@endsection
+   
 
 @section('js')
     <script src="{{ URL::asset('js/cni.js')}}" type="text/javascript"></script>

@@ -18,7 +18,7 @@ use App\Http\Middleware\preventBackButton;
 // ============= All get request ===================
 Route::get('/', 'pageController@getLogin');
 
-Route::middleware('cache.headers:public,no-cache,no-store,must-revalidate')->group(function () {
+//Route::middleware('cache.headers:public,no-cache,no-store,must-revalidate');
 
 Route::get('/admin/cni','pageController@getPageCni');
 
@@ -34,7 +34,7 @@ Route::get('/logout','userController@logOutRespo');
 //the route vers page insert compte
 Route::get('/insert/compte','pageController@getPagInsertCompte');
 
-});
+Route::get('/display/clients','pageController@getPageDisplayClient');
 
 
 

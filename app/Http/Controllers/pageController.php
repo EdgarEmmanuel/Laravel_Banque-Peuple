@@ -58,5 +58,18 @@ class pageController extends Controller
     }
 
 
+    public function getPageDisplayClient(){
+        $data=DB::select("select * from client_independant");
+        $moraux = DB::select("select * from client_moral");
+        $salaries = DB::select("select * from client_salarie");
+
+        return view('clients.display')->with([
+            "independants" => $data,
+            "moraux" => $moraux,
+            "salaries" => $salaries,
+        ]);
+    }
+
+
 
 }
