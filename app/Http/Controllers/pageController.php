@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
 
 class pageController extends Controller
@@ -83,7 +81,52 @@ class pageController extends Controller
 
 
     public function getPageDisplayComptes($id){
-        var_dump($id);
+        //fetch all form the table Comptes where the IdClient 
+        $res = DB::select("SELECT num_compte from comptes where id_client=?",[$id]);
+
+        if($res!=null){
+
+            //declare randomly the array for the three type of account
+            $CC=[];
+            $CB=[];
+            $CE=[];
+
+
+            //empty the array for the num of account 
+            $table=[];
+
+            foreach($res as $r){
+                //push the data in the array
+                array_push($table ,$r->num_compte);
+            }
+        
+            for($i=0;$i<count($table);$i++){
+                echo $table[$i]."<br/>";
+
+                //we fetch the first second letter 
+                switch($table[$i][0].$table[$i][1]){
+                    case "CE" : 
+                        $resCE=DB::select("SELECT * from comptes c ,compte_epargne ce  where
+                        c.num_compte=? and c.idCompte=ce.id_compte",[$table[$i]]);
+                        var_dump($resCE);
+                        echo "<br/>";
+                    break;
+                    case "CB" : 
+                        $resCE=DB::select("SELECT * from comptes c ,compte_bloque cb  where
+                        c.num_compte=? and c.idCompte=cb.id_compte ",[$table[$i]]);
+                        var_dump($resCE);
+                        echo "<br/>";
+                    break;
+                    case "CC" : 
+                        $resCE=DB::select("SELECT * from comptes c ,compte_courant cc  where
+                        c.num_compte=? and c.idCompte=cc.id_compte",[$table[$i]]);
+                        var_dump($resCE);
+                        echo "<br/>";
+                    break;
+                }
+            }
+        }
+
         die();
     }
 
