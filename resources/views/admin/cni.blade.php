@@ -28,7 +28,9 @@
     <a class="addI" href="/client/clientIndependant" id="add">Nouveau Client Independant </a>
 
     <p class="display">
-        <a href="/display/clients">LISTE DES CLIENTS</a>
+        <a href="/display/clients">LISTE DES CLIENTS INDEPENDANTS </a>
+        <a href="/display/moraux">LISTE DES CLIENTS MORAUX </a>
+        <a href="/display/salaries">LISTE DES CLIENTS SALARIES </a>
     </p>
 @endsection
    

@@ -36,6 +36,10 @@ Route::get('/insert/compte','pageController@getPagInsertCompte');
 
 Route::get('/display/clients','pageController@getPageDisplayClient');
 
+Route::get("/display/moraux","pageController@getPageDisplayMoral");
+
+Route::get("/display/salaries","pageController@getPageDisplaySalarie");
+
 
 
 

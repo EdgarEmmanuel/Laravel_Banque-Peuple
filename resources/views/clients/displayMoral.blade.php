@@ -6,17 +6,16 @@
 
 
 @section("content")
-    <nav>
-        <h1>CLIENTS INDEPENDANTS</h1>
+<nav>
+    <h1>CLIENTS MORAUX</h1>
 
-        <div class="menu">
-            <a href="/admin/cni">RETOUR</a>
-            <a href="/display/moraux">CLIENTS MORAUX </a>
-            <a href="/display/salaries">CLIENTS SALARIES</a>
-        </div>
+    <div class="menu">
+        <a href="/admin/cni">RETOUR</a>
+        <a href="/display/clients">CLIENTS INDEPENDANTS </a>
+        <a href="/display/salaries">CLIENTS SALARIES</a>
+    </div>
 
-    </nav>
-
+</nav>
     <div class="diI">
         <table>
             <tr>
@@ -39,9 +38,4 @@
             @endforeach
         </table>
     </div>
-@endsection
-
-
-@section("js")
- <script src="{{URL::asset("js/display.js")}}" type="text/javascript"></script>
 @endsection
