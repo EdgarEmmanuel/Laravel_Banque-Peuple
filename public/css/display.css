@@ -2,25 +2,52 @@ nav{
     background:black;
     width:100%;
     padding:10px 10px;
-    display:flex;
-    align-items:center;
+    text-align:center;
 }
 
 
 nav a{
     color:white;
-    flex-basis: 32%;
     text-align:center;
     font-weight:bold;
     text-decoration:none;
     cursor:pointer;
+    font-size:40px;
 }
 
 
 .diI table {
     width:100%;
+    margin-top: 30px;
 }
 
-.diI table th{
+.diI table tr:first-of-type{
     background:black;
+    color:white;
+    font-weight:bold;
+    text-align:center;
+    padding:10px 0px;
+}
+
+
+.diI table tr {
+    text-align:center;
+    margin-top:20px;
+    height:3rem;
+}
+
+.diI table tr a{
+    width:200px;
+    background:black;
+    color:white;
+    padding:10px 10px;
+    font-weight:bold;
+    margin-top:30px;
+    border:none;
+    border-radius:10px ;
+    text-decoration:none;
+}
+
+.diI table td{
+    text-transform: uppercase;
 }

@@ -11,7 +11,7 @@
     <!-- link for stylesheet -->
     @yield('css')
 </head>
-<body style="margin:0;">
+<body style="margin:0;overflow-x:hidden;">
     <div class="divLayout">
 
         @if(session('error'))
