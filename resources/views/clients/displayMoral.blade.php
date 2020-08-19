@@ -19,20 +19,20 @@
     <div class="diI">
         <table>
             <tr>
-                <td>NOM COMPLET </td>
-                <td>LOCALISATION</td>
-                <td> CNI </td>
-                <td>PROFESSION</td>
+                <td>NOM ENTREPRISE </td>
+                <td>NINEA</td>
+                <td>ACTIVITE ENTREPRISE</td>
+                <td>TYPE ENTREPRISE</td>
                 <td>ACTION</td>
             </tr>
-            @foreach($independants as $in)
+            @foreach($moraux as $moral)
                 <tr>
-                    <td>{{ $in->nom }} {{$in->prenom}}</td>
-                    <td>{{ $in->localisation }}</td>
-                    <td>{{ $in->cni }}</td>
-                    <td>{{ $in->activite_client }}</td>
+                    <td>{{ $moral->nom_entreprise }}</td>
+                    <td>{{ $moral->ninea }}</td>
+                    <td>{{ $moral->activite_entreprise }}</td>
+                    <td>{{ $moral->type_entreprise }}</td>
                     <td>
-                        <a href="{{ $in->idClient }}">VOIR COMPTE(S)</a>
+                        <a href="/display/comptes/{{$moral->idClient}}">VOIR COMPTE(S)</a>
                     </td>
                 </tr>
             @endforeach

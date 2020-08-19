@@ -77,8 +77,14 @@ class pageController extends Controller
         $salaries = DB::select("select * from client_salarie");
 
         return view("clients.displaySalarie")->with([
-
+            "salaries" => $salaries,
         ]);
+    }
+
+
+    public function getPageDisplayComptes($id){
+        var_dump($id);
+        die();
     }
 
 

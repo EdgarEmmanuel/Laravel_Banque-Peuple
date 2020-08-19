@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('css/display.css')}}" />
+    <link rel="stylesheet" href="{{ URL::asset('css/display.css')}}"/>
 @endsection
 
 
@@ -19,19 +19,19 @@
         <table>
             <tr>
                 <td>NOM COMPLET </td>
-                <td>LOCALISATION</td>
-                <td> CNI </td>
                 <td>PROFESSION</td>
+                <td> CNI </td>
+                <td>NOM ET LIEU ENTRPRISE</td>
                 <td>ACTION</td>
             </tr>
-            @foreach($independants as $in)
+            @foreach($salaries as $salarie)
                 <tr>
-                    <td>{{ $in->nom }} {{$in->prenom}}</td>
-                    <td>{{ $in->localisation }}</td>
-                    <td>{{ $in->cni }}</td>
-                    <td>{{ $in->activite_client }}</td>
+                    <td>{{ $salarie->nom }} {{$salarie->prenom}}</td>
+                    <td>{{ $salarie->profession }}</td>
+                    <td>{{ $salarie->cni }}</td>
+                    <td>{{ $salarie->nom_entreprise }} ,{{ $salarie->adresse_entreprise }}</td>
                     <td>
-                        <a href="{{ $in->idClient }}">VOIR COMPTE(S)</a>
+                        <a href="/display/comptes/{{$salarie->idClient}}">VOIR COMPTE(S)</a>
                     </td>
                 </tr>
             @endforeach

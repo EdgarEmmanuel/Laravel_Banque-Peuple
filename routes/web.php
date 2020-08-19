@@ -40,6 +40,7 @@ Route::get("/display/moraux","pageController@getPageDisplayMoral");
 
 Route::get("/display/salaries","pageController@getPageDisplaySalarie");
 
+Route::get("/display/comptes/{id}","pageController@getPageDisplayComptes");
 
 
 

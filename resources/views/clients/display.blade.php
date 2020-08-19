@@ -33,7 +33,7 @@
                     <td>{{ $in->cni }}</td>
                     <td>{{ $in->activite_client }}</td>
                     <td>
-                        <a href="{{ $in->idClient }}">VOIR COMPTE(S)</a>
+                        <a href="/display/comptes/{{$in->idClient}}">VOIR COMPTE(S)</a>
                     </td>
                 </tr>
             @endforeach
