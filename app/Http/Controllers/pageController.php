@@ -101,33 +101,51 @@ class pageController extends Controller
             }
         
             for($i=0;$i<count($table);$i++){
-                echo $table[$i]."<br/>";
 
                 //we fetch the first second letter 
                 switch($table[$i][0].$table[$i][1]){
                     case "CE" : 
                         $resCE=DB::select("SELECT * from comptes c ,compte_epargne ce  where
                         c.num_compte=? and c.idCompte=ce.id_compte",[$table[$i]]);
-                        var_dump($resCE);
-                        echo "<br/>";
+                       
+                        //push in the global array of teh CE account 
+                        array_push($CE,$resCE);
+
                     break;
                     case "CB" : 
-                        $resCE=DB::select("SELECT * from comptes c ,compte_bloque cb  where
+                        $resCB=DB::select("SELECT * from comptes c ,compte_bloque cb  where
                         c.num_compte=? and c.idCompte=cb.id_compte ",[$table[$i]]);
-                        var_dump($resCE);
-                        echo "<br/>";
+
+
+                        //push in the global array of teh CE account 
+                        array_push($CB,$resCB);
                     break;
                     case "CC" : 
-                        $resCE=DB::select("SELECT * from comptes c ,compte_courant cc  where
+                        $resCC=DB::select("SELECT * from comptes c ,compte_courant cc  where
                         c.num_compte=? and c.idCompte=cc.id_compte",[$table[$i]]);
-                        var_dump($resCE);
-                        echo "<br/>";
+                        
+                        //push in the global array of teh CE account 
+                        array_push($CC,$resCC);
                     break;
                 }
             }
+
+            // foreach($CC as $c => $i){
+            //    foreach($CC[$c] as $j){
+            //        var_dump($j);
+            //    }
+            // }
+            // die();
+
+            return view("compte.displayCompte")->with([
+                "CE"=>$CE,
+                "CC"=>$CC,
+                "c_bloques"=>$CB,
+            ]);
+        }else{
+            return redirect("/admin/cni");
         }
 
-        die();
     }
 
 
