@@ -11,6 +11,11 @@
             Banque du Peuple
         </div>
     </header>
+    <p class="display">
+        <a href="/display/clients">LISTE DES CLIENTS INDEPENDANTS </a>
+        <a href="/display/moraux">LISTE DES CLIENTS MORAUX </a>
+        <a href="/display/salaries">LISTE DES CLIENTS SALARIES </a>
+    </p>
     <main>
      <input type="text" value="Matricule : {{ session('matricule')}} " placeholder="" id="caissiere" readonly/>
         <a href="/logout" id="a" >Deconnexion</a><br>
@@ -26,12 +31,6 @@
     <a class="addS" href="/client/clientSalarie" id="add">Nouveau Client Salarie </a> <br/><br/><br/><br/>
     <a class="addM" href="/client/clientMoral" id="add">Nouveau Client Moral </a> <br/><br/><br/><br/>
     <a class="addI" href="/client/clientIndependant" id="add">Nouveau Client Independant </a>
-
-    <p class="display">
-        <a href="/display/clients">LISTE DES CLIENTS INDEPENDANTS </a>
-        <a href="/display/moraux">LISTE DES CLIENTS MORAUX </a>
-        <a href="/display/salaries">LISTE DES CLIENTS SALARIES </a>
-    </p>
 @endsection
    
 

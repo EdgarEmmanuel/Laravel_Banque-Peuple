@@ -162,11 +162,13 @@ main .desMess{
 .display{
     display:flex;
     align-items: center;
+    margin-top:-6px;
 }
 
 .display a{
     background:#235d8e;
     width:320px;
+    margin:0px 10px;
     font-weight: bold;
     border:1px solid #235d8e;
     border-radius:10px;
