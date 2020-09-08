@@ -83,6 +83,8 @@ class pageController extends Controller
     public function getPageDisplayComptes($id){
         //fetch all form the table Comptes where the IdClient 
         $res = DB::select("SELECT num_compte from comptes where id_client=?",[$id]);
+        var_dump($res);
+        die;
 
         if($res!=null){
 
@@ -130,23 +132,45 @@ class pageController extends Controller
                 }
             }
 
-            // foreach($CC as $c => $i){
-            //    foreach($CC[$c] as $j){
-            //        var_dump($j);
-            //    }
-            // }
-            // die();
-
             return view("compte.displayCompte")->with([
                 "CE"=>$CE,
                 "CC"=>$CC,
-                "c_bloques"=>$CB,
+                "CB"=>$CB,
             ]);
         }else{
-            return redirect("/admin/cni");
+            return redirect("/admin/cni")->with("message","LE CLIENT NE POSSEDE PAS DE COMPTE");
         }
 
     }
+
+    public function getPageDisplayOperation($id){
+        var_dump($id);
+        die;
+        return view("operations.displayOp");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

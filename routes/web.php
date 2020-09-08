@@ -34,6 +34,8 @@ Route::get('/logout','userController@logOutRespo');
 //the route vers page insert compte
 Route::get('/insert/compte','pageController@getPagInsertCompte');
 
+
+//route for displaying different pages 
 Route::get('/display/clients','pageController@getPageDisplayClient');
 
 Route::get("/display/moraux","pageController@getPageDisplayMoral");
@@ -41,6 +43,8 @@ Route::get("/display/moraux","pageController@getPageDisplayMoral");
 Route::get("/display/salaries","pageController@getPageDisplaySalarie");
 
 Route::get("/display/comptes/{id}","pageController@getPageDisplayComptes");
+
+Route::get("/display/operations/{id}","pageController@getPageDisplayOperation");
 
 
 
