@@ -83,8 +83,7 @@ class pageController extends Controller
     public function getPageDisplayComptes($id){
         //fetch all form the table Comptes where the IdClient 
         $res = DB::select("SELECT num_compte from comptes where id_client=?",[$id]);
-        var_dump($res);
-        die;
+        
 
         if($res!=null){
 
@@ -110,7 +109,7 @@ class pageController extends Controller
                         $resCE=DB::select("SELECT * from comptes c ,compte_epargne ce  where
                         c.num_compte=? and c.idCompte=ce.id_compte",[$table[$i]]);
                        
-                        //push in the global array of teh CE account 
+                        //push in the global array of the CE account 
                         array_push($CE,$resCE);
 
                     break;

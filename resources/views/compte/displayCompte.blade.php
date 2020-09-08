@@ -67,7 +67,7 @@
     @endif
 
 
-    @if($CC!=null)
+    @if($CB!=null)
     <h1>COMPTE(S) BLOQUE(S)</h1>
             <div class="diI">
                 <table>
@@ -75,15 +75,15 @@
                         <td>DATE DEBLOCAGE</td>
                         <td>NUMERO COMPTE</td>
                         <td>SOLDE</td>
-                        <td>ENTREPRISE CLIENT </td>
                         <td>ACTION</td>
                     </tr>
                     @foreach($CB as $c => $i)
                         @foreach($CB[$c] as $j)
                             <tr>
                                 <td>{{ $j->date_deblocage }}</td>
-                                <td>{{ $j->solde }}</td>
-                                <td><a href="/display/operations/{{$j->id_compte_courant}}">VOIR OPERATION(S)</a></td>
+                                <td>{{$j->num_compte}}</td>
+                                <td>{{ $j->solde }} FCFA</td>
+                                <td><a href="/display/operations/{{$j->id_compte}}">VOIR OPERATION(S)</a></td>
                             </tr>
                         @endforeach
                      @endforeach
