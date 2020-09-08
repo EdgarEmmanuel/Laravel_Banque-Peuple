@@ -143,9 +143,25 @@ class pageController extends Controller
     }
 
     public function getPageDisplayOperation($id){
-        var_dump($id);
-        die;
-        return view("operations.displayOp");
+
+        //fetch all operations on that account
+        $operations = DB::select("SELECT * FROM operations where id_compte=?",[$id]);
+        
+
+        //fetch the informations about the compte
+        $comptes = DB::select("SELECT * FROM comptes where idCompte=?",[$id]);
+
+        if($operations != null && $comptes!=null){
+            return view("operations.displayOp")->with([
+                "operations"=>$operations,
+                "comptes"=>$comptes,
+            ]);
+        }else{
+            return redirect("/admin/cni");
+        }
+
+
+        
     }
 
 

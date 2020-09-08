@@ -32,7 +32,7 @@
                                 <td>{{ $j->date_ouverture }}</td>
                                 <td>{{ $j->num_compte }}</td>
                                 <td>{{ $j->solde }} FCFA</td>
-                                <td><a href="/display/operations/{{$j->id_compte_epargne}}">VOIR OPERATION(S)</a></td>
+                                <td><a href="/display/operations/{{$j->id_compte}}">VOIR OPERATION(S)</a></td>
                             </tr>
                         @endforeach
                      @endforeach
@@ -58,7 +58,7 @@
                                 <td>{{ $j->num_compte }}</td>
                                 <td>{{ $j->solde }} FCFA</td>
                                 <td>{{ $j->nom_entreprise }} FCFA</td>
-                                <td><a href="/display/operations/{{$j->id_compte_courant}}">VOIR OPERATION(S)</a></td>
+                                <td><a href="/display/operations/{{$j->id_compte}}">VOIR OPERATION(S)</a></td>
                             </tr>
                         @endforeach
                      @endforeach
