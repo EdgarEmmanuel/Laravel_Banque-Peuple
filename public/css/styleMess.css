@@ -1,0 +1,24 @@
+.message{
+    width:100%;
+    background:linear-gradient(0.25turn, #504DC1, rgb(80, 77, 193,0.8));
+    height:10rem;
+    color:white;
+    text-align:center;
+}
+
+
+.message a{
+    width:400px;
+    border:1px solid white;
+    border-radius:10px;
+    padding:10px 0px;
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+    background:linear-gradient(0.25turn, #504DC1, rgb(80, 77, 193,0.8));
+}
+
+.message a:hover{
+    color:#504DC1;
+    background:white;
+}

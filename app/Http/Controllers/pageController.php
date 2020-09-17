@@ -79,6 +79,10 @@ class pageController extends Controller
         ]);
     }
 
+    public function getPageDisplayMessage(){
+        return view("layout.pageMessage");
+    }
+
 
     public function getPageDisplayComptes($id){
         //fetch all form the table Comptes where the IdClient 
@@ -146,7 +150,6 @@ class pageController extends Controller
 
         //fetch all operations on that account
         $operations = DB::select("SELECT * FROM operations where id_compte=?",[$id]);
-        
 
         //fetch the informations about the compte
         $comptes = DB::select("SELECT * FROM comptes where idCompte=?",[$id]);
@@ -157,7 +160,8 @@ class pageController extends Controller
                 "comptes"=>$comptes,
             ]);
         }else{
-            return redirect("/admin/cni");
+            session(["message" => "AUCUNE OPERATION POUR CE COMPTE"]);
+            return redirect("/page/message");
         }
 
 

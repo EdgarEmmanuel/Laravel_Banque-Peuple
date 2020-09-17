@@ -1,4 +1,3 @@
-
 <div class="divLayout">
 
 @if(session('error'))

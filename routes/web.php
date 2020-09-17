@@ -46,6 +46,9 @@ Route::get("/display/comptes/{id}","pageController@getPageDisplayComptes");
 
 Route::get("/display/operations/{id}","pageController@getPageDisplayOperation");
 
+//displaying the page for the message 
+Route::get("/page/message","pageController@getPageDisplayMessage");
+
 
 
 
