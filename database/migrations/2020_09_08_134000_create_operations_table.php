@@ -24,7 +24,7 @@ class CreateOperationsTable extends Migration
             $table->foreign("id_compte")->references("idCompte")->on("comptes");
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

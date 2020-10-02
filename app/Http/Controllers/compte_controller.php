@@ -13,7 +13,7 @@ class compte_controller extends Controller
         $id = DB::table('comptes')->insertGetId([
             'num_compte' => $num,
             'cle_rib' => $cle,
-            'date-ouverture' => $Ouvert,
+            'date_ouverture' => $Ouvert,
             'id_client' => $idClient,
             'id_responsable' => $idRespo,
             'id_agence' => $idAgence
@@ -155,7 +155,8 @@ class compte_controller extends Controller
                 $numero_bloque = self::getNumCompte("Bloque");
 
                 //insert firstly in compte 
-                $idCompte=self::insertInCompte($numero_bloque,$request->cle_rib,$request->dateOuvert,$idClient,$idRespo,$idAgence);
+                $idCompte=self::insertInCompte($numero_bloque,
+                $request->cle_rib,$request->dateOuvert,$idClient,$idRespo,$idAgence);
 
                 //insert in table compte_bloque 
                 $resultat = DB::table("compte_bloque")->insert([
@@ -164,12 +165,32 @@ class compte_controller extends Controller
                     'id_compte' => $idCompte
                 ]);
 
-                //redirection after insertion
+
                 if($resultat!=0){
-                    return redirect('/admin/cni')->with('success','INSERTION DU COMPTE EFFECTUE AVEC SUCCESS !! ');
+
+                     //insert in the operations 
+                    $f = DB::table("operations")->insert([
+                        "date_operation"=>$request->dateOuvert,
+                        "type_operation"=>"DEPOT",
+                        "montant"=>$request->montant,
+                        "id_employe"=>$idRespo,
+                        "id_compte"=>$idCompte
+                    ]);
+
+                    //redirection after insertion
+                    if($f!=0){
+                        return redirect('/admin/cni')->with('success','INSERTION DU COMPTE EFFECTUE AVEC SUCCESS !! ');
+                    }else{
+                        return redirect('/admin/cni')->with('error',"ERREUR D'INSERTION DE COMPTE");
+                    }
+                    
                 }else{
-                    return redirect('/admin/cni')->with('error',"ERREUR D'INSERTION DE COMPTE");
+                    return redirect('/admin/cni')->with('error',"OUPS UNE ERREUR EST SURVENUE");
                 }
+
+               
+
+                
             break;
         }
     }
