@@ -69,3 +69,8 @@ Route::post('/checkCni','userController@checkCNI');
 
 //route for the post from the insertCompte page 
 Route::post('/compte','compte_controller@insertCompte');
+
+
+//============================= start all for the caissiere =================
+
+Route::get("/indexCaissiere","pageController@getPageHomeCaissiere");

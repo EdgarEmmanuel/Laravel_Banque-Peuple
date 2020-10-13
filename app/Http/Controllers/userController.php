@@ -176,6 +176,14 @@ class userController extends Controller
                 }
             break;
             case "caissiere": 
+                $res = DB::select("SELECT * FROM caissiere c ,
+                 employes em where c.login=? and
+                  c.password=? and c.id_employe=em.id_employe",[$login,$password]);
+                if($res==null){
+                    return redirect("/");
+                }else{
+                    return redirect("/indexCaissiere");
+                }
             break;
         }
     }

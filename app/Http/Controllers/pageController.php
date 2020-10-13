@@ -170,6 +170,17 @@ class pageController extends Controller
 
 
 
+    // ==================== all pages for the caissiere ==============
+
+        public function getPageHomeCaissiere(){
+            return view("caissiere.pages.home");
+        }
+
+
+    // ====== en all page sfro th ecaissere ======================
+
+
+
 
 
 
