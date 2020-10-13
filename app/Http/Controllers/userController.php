@@ -174,7 +174,8 @@ class userController extends Controller
                 }else{
                     return redirect("/");
                 }
-                
+            break;
+            case "caissiere": 
             break;
         }
     }

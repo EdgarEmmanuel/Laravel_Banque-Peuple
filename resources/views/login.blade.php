@@ -5,7 +5,7 @@
 @endsection
 
 @section('content') 
-    <header>
+    <header> 
         <div class="brand">Sign In</div>
     </header>
     <div class="div_form">
