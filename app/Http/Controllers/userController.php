@@ -175,13 +175,22 @@ class userController extends Controller
                     return redirect("/");
                 }
             break;
-            case "caissiere": 
-                $res = DB::select("SELECT * FROM caissiere c ,
+            case "caissiere":
+                $caissiere = DB::select("SELECT * FROM caissiere c ,
                  employes em where c.login=? and
                   c.password=? and c.id_employe=em.id_employe",[$login,$password]);
-                if($res==null){
+                if($caissiere==null){
                     return redirect("/");
                 }else{
+                    //set all the session
+                    foreach($caissiere as $c){
+                        session([
+                            "matricule"=>$c->matricule,
+                            "nom_caissiere" => $c->nom+" "+$c->prenom,
+                            "id_caissiere" => $c->id_employe
+                            ]);
+                    }
+                   
                     return redirect("/indexCaissiere");
                 }
             break;

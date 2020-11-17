@@ -177,7 +177,7 @@ class pageController extends Controller
         }
 
 
-    // ====== en all page sfro th ecaissere ======================
+    // ====== end all page sfro th ecaissere ======================
 
 
 

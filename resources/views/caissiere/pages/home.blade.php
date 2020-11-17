@@ -5,7 +5,9 @@
 @endsection
 
 @section("content")
-    <h1>HOME CAISSIERE</h1>
+    <div class="Home">
+    <h1>WELCOME , {{session.get("")}}</h1>
 
-<img src="{{URL::asset('avatarFemme.png')}}" id="imageIcon" alt="icone femme" />
+    <img src="{{URL::asset('avatarFemme.png')}}" id="imageIcon" alt="icone femme" />
+    </div>
 @endsection
