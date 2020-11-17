@@ -186,7 +186,7 @@ class userController extends Controller
                     foreach($caissiere as $c){
                         session([
                             "matricule"=>$c->matricule,
-                            "nom_caissiere" => $c->nom+" "+$c->prenom,
+                            "nom_caissiere" => $c->nom." ".$c->prenom,
                             "id_caissiere" => $c->id_employe
                             ]);
                     }

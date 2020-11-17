@@ -73,6 +73,12 @@ Route::post('/compte','compte_controller@insertCompte');
 
 //============================= start all for the caissiere =================
 
-Route::get("/indexCaissiere","pageController@getPageHomeCaissiere");
+Route::get("/home.html","pageController@getPageHomeCaissiere");
+
+Route::get("/retrait.html","pageController@getPageRetrait");
+
+Route::get("/depot.html","pageController@getPageDepot");
+
+Route::get("/virement.html","pageController@getPageVirement");
 
 ///Route::get("/deconnexion_caisssiere","");

@@ -176,6 +176,18 @@ class pageController extends Controller
             return view("caissiere.pages.home");
         }
 
+        public function getPageRetrait(){
+            return view("caissiere.pages.retrait");
+        }
+
+        public function getPageDepot(){
+            return view("caissiere.pages.depot");
+        }
+
+        public function getPageVirement(){
+            return view("caissiere.pages.virement");
+        }
+
 
     // ====== end all page sfro th ecaissere ======================
 

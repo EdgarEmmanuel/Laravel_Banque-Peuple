@@ -6,7 +6,7 @@
 
 @section("content")
     <div class="Home">
-    <h1>WELCOME , {{session.get("")}}</h1>
+    <h1>WELCOME , {{session("nom_caissiere")}}</h1>
 
     <img src="{{URL::asset('avatarFemme.png')}}" id="imageIcon" alt="icone femme" />
     </div>
