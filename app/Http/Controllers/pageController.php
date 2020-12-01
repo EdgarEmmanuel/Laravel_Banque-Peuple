@@ -163,9 +163,6 @@ class pageController extends Controller
             session(["message" => "AUCUNE OPERATION POUR CE COMPTE"]);
             return redirect("/page/message");
         }
-
-
-        
     }
 
 
