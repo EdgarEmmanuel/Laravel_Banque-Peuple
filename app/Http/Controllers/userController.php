@@ -191,7 +191,7 @@ class userController extends Controller
                             ]);
                     }
                    
-                    return redirect("/indexCaissiere");
+                    return redirect("/home.html");
                 }
             break;
         }

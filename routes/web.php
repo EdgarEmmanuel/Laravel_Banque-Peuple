@@ -81,4 +81,7 @@ Route::get("/depot.html","pageController@getPageDepot");
 
 Route::get("/virement.html","pageController@getPageVirement");
 
+
+Route::post("/depot_bancaire","caissiereController@insertDepot");
+
 ///Route::get("/deconnexion_caisssiere","");

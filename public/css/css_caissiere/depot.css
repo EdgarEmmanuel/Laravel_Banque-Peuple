@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+
+h1{
+    text-align:center;
+    margin-top:25px;
+}
+
+.container{
+    display:flex;
+    margin-top:40px;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap:wrap;
+    padding:20px 20px;
+}
+
+/* left div */
+
+.container .left{
+    flex-basis:50%;
+}
+
+
+.container .left img{
+    width:32rem;
+    min-width:22rem;
+    border-radius:10px;
+}
+
+/* right div */
+
+.container .right{
+    flex-basis: 50%;
+}
+
+.container .right form {
+    text-align:center;
+    font-family: 'Yusei Magic', sans-serif;
+}
+
+.container .right form input{
+    outline-width:0;
+    border:2px solid black;
+    border-radius:10px;
+    padding:10px 10px;
+}
+
+.container .right form label{
+    margin-top:20px;
+    text-transform: uppercase;
+}
+
+.container .right form input[type="submit"]{
+    margin-top:45px;
+    background:black;
+    color:white;
+    border-radius:10px;
+}
+
+.container .right form input[type="submit"]:hover{
+    color:black;
+    background:white;
+}
