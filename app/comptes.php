@@ -8,7 +8,13 @@ use Illuminate\Support\Facades\DB;
 class comptes extends Model
 {
     public function getInfoCompte($numeroCompte){
-        $da = comptes::where("num_compte","=",$numeroCompte)->firstOrFail();
-        return $da;
+        $data=null;
+        try {
+            $data = comptes::where("num_compte","=",$numeroCompte)->first();
+        } catch (\Throwable $th) {
+            $data=null;
+        }
+        
+        return $data;
     }
 }
