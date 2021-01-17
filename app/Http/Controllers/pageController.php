@@ -121,7 +121,6 @@ class pageController extends Controller
                         $resCB=DB::select("SELECT * from comptes c ,compte_bloque cb  where
                         c.num_compte=? and c.idCompte=cb.id_compte ",[$table[$i]]);
 
-
                         //push in the global array of teh CE account 
                         array_push($CB,$resCB);
                     break;
