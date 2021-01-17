@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\comptes ;
 use App\compte_bloque;
+use App\compte_epargne;
 
 use App\Http\Controllers\notification;
 
@@ -13,11 +14,38 @@ class caissiereController extends Controller
 {
     private $_comptes;
     private $_compteBloque;
+    private $_compteEpargne;
 
-    public function __construct(comptes $comptes,compte_bloque $compteBloque)
+    public function __construct(comptes $comptes,compte_bloque $compteBloque
+    ,compte_epargne $compteEpargne)
     {
         $this->_comptes = $comptes;
         $this->_compteBloque =$compteBloque;
+        $this->_compteEpargne = $compteEpargne;
+    }
+
+    public function updateCompteEpargne($montant , $idCompte ,$numeroCompte){
+
+         //we update the account 
+         $val =  $this->_compteEpargne->updateCompteEpargne($montant,$idCompte);
+
+         if($val==null){
+              //we prepare a notification 
+         notification::displayMessage("error"," DEPOT DE <<".$montant." FCFA >> SUR LE NUMERO
+         DE COMPTE <<".$numeroCompte.">> \n 
+        ERREUR DURANT LA TRANSACTION ");
+
+         }else{
+
+             //we prepare a notification 
+         notification::displayMessage("success"," DEPOT DE <<".$montant." FCFA >> SUR LE NUMERO
+         DE COMPTE <<".$numeroCompte.">> \n 
+        EFFECTUE AVEC SUCCES ");
+         }
+
+         //we return the route to redirect to the page 
+         return $route="/depot.html";
+
     }
 
     public function insertDepot(Request $request){
@@ -31,7 +59,8 @@ class caissiereController extends Controller
 
         if($data==null){
             //we display a notification if the account doesn't exist 
-            notification::displayMessage("error","LE NUMERO DE COMPTE <<".$request->get("numeroCompte").">> \n 
+            notification::displayMessage("error","LE NUMERO DE COMPTE 
+            <<".$numeroCompte.">> \n 
             N'EXISTE PAS ");
 
             //make a redirection
@@ -53,17 +82,17 @@ class caissiereController extends Controller
 
                     //we prepare a notification 
                     notification::displayMessage("success"," DEPOT DE <<".$montant." FCFA >> SUR LE NUMERO
-                     DE COMPTE <<".$request->get("numeroCompte").">> \n 
+                     DE COMPTE <<".$numeroCompte.">> \n 
                     EFFECTUE AVEC SUCCES ");
 
                     //we redirect to the page 
                     $route="/depot.html";
                 break;
                 case "CE": 
-
+                    $route = $this->updateCompteEpargne($montant,$idCompte,$numeroCompte);
                 break;
-                case "CC" : 
-
+                case "CC" :
+                    
                 break;
             }
 

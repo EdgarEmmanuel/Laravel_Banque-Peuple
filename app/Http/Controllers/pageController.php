@@ -185,7 +185,7 @@ class pageController extends Controller
         }
 
 
-    // ====== end all page sfro th ecaissere ======================
+    // ====== end all pages for the caissiere ======================
 
 
 
